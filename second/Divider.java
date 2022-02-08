@@ -11,6 +11,7 @@ public class Divider {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         try {
+            System.out.print("Enter an integer: ");
             int number = scanner.nextInt();
             int divisor = 2;
             StringBuilder string = new StringBuilder();
@@ -25,9 +26,9 @@ public class Divider {
                     divisor += 2;
                 }
             }
-            System.out.println(string);
+            System.out.println("Divisors of the entered integer: " + string);
         } catch (InputMismatchException e){
-            System.out.println("Введено дробное число");
+            System.out.println("Not an integer entered");
         }
     }
 }
