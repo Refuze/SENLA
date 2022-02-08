@@ -3,17 +3,26 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Scanner;
 
+/*Создайте программу, которая будет получать число и печатать
+его в следующем формате (формы цифр можно придумать свои,
+главное, чтобы они читались на экране)*/
+
 public class Digits {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
+        System.out.print("Enter a number: ");
         String str = scanner.nextLine();
-        var listDigits = parseDigits(str);
-        var digitsToWrite = getStringOfString(listDigits);
-        showDigits(digitsToWrite);
+        try {
+            ArrayList<Integer> listDigits = parseDigits(str);
+            ArrayList<ArrayList<String>> digitsToWrite = getStringOfString(listDigits);
+            showDigits(digitsToWrite);
+        } catch (NumberFormatException e) {
+            System.out.println("Not a number entered");
+        }
     }
 
     private static ArrayList<Integer> parseDigits(String str){
-        var digits = new ArrayList<Integer>();
+        ArrayList<Integer> digits = new ArrayList<>();
         for(int i =0; i < str.length(); i++){
             digits.add(Integer.parseInt(String.valueOf(str.charAt(i))));
         }
@@ -32,48 +41,26 @@ public class Digits {
     }
 
     private static ArrayList<ArrayList<String>> getStringOfString(ArrayList<Integer> digits){
-        var digitsList = new ArrayList<ArrayList<String>>();
-        for (int i = 0; i < digits.size(); i++) {
-            digitsList.add(getListForDigit(digits.get(i)));
+        ArrayList<ArrayList<String>> digitsList = new ArrayList<>();
+        for (Integer digit : digits) {
+            digitsList.add(getListForDigit(digit));
         }
         return digitsList;
     }
 
     private static ArrayList<String> getListForDigit(int digit){
-        var digitList = new ArrayList<String>();
-        switch (digit){
-            case 0:
-                digitList = new ArrayList<>(Arrays.asList("  ***  "," *   * ","*     *","*     *","*     *"," *   * ","  ***  "));
-                break;
-            case 1:
-                digitList = new ArrayList<>(Arrays.asList("  *   "," **   ","  *   ","  *   ","  *   ","  *   "," ***  "));
-                break;
-            case 2:
-                digitList = new ArrayList<>(Arrays.asList(" ***  ","*   * ","*  *  ","  *   "," *    ","*     ","***** "));
-                break;
-            case 3:
-                digitList = new ArrayList<>(Arrays.asList("******","    * ","   *  ","  *   "," **** ","     *","***** "));
-                break;
-            case 4:
-                digitList = new ArrayList<>(Arrays.asList("   *  ","  **  ", " * *  ", "*  *  ", "******", "   *  ", "   *  "));
-                break;
-            case 5:
-                digitList = new ArrayList<>(Arrays.asList(" *****"," *    "," *    "," **** ","     *","     *","***** "));
-                break;
-            case 6:
-                digitList = new ArrayList<>(Arrays.asList("     * ","    *  ","   *   ","  *    "," ***** "," *   * "," ***** "));
-                break;
-            case 7:
-                digitList = new ArrayList<>(Arrays.asList("***** ","    * ","   *  ","  *   "," *    ","*     ","*     "));
-                break;
-            case 8:
-                digitList = new ArrayList<>(Arrays.asList(" ***  ","*   * ","*   * "," ***  ","*   * ","*   * "," ***  "));
-                break;
-            case 9:
-                digitList = new ArrayList<>(Arrays.asList(" **** ","*   * ","*   * "," **** ","    * ","    * ","    * "));
-                break;
-        }
-        return digitList;
+        return switch (digit) {
+            case 0 -> new ArrayList<>(Arrays.asList("  ***  ", " *   * ", "*     *", "*     *", "*     *", " *   * ", "  ***  "));
+            case 1 -> new ArrayList<>(Arrays.asList("  *   ", " **   ", "  *   ", "  *   ", "  *   ", "  *   ", " ***  "));
+            case 2 -> new ArrayList<>(Arrays.asList(" ***  ", "*   * ", "*  *  ", "  *   ", " *    ", "*     ", "***** "));
+            case 3 -> new ArrayList<>(Arrays.asList("******", "    * ", "   *  ", "  *   ", " **** ", "     *", "***** "));
+            case 4 -> new ArrayList<>(Arrays.asList("   *  ", "  **  ", " * *  ", "*  *  ", "******", "   *  ", "   *  "));
+            case 5 -> new ArrayList<>(Arrays.asList(" *****", " *    ", " *    ", " **** ", "     *", "     *", "***** "));
+            case 6 -> new ArrayList<>(Arrays.asList("     * ", "    *  ", "   *   ", "  *    ", " ***** ", " *   * ", " ***** "));
+            case 7 -> new ArrayList<>(Arrays.asList("***** ", "    * ", "   *  ", "  *   ", " *    ", "*     ", "*     "));
+            case 8 -> new ArrayList<>(Arrays.asList(" ***  ", "*   * ", "*   * ", " ***  ", "*   * ", "*   * ", " ***  "));
+            case 9 -> new ArrayList<>(Arrays.asList(" **** ", "*   * ", "*   * ", " **** ", "    * ", "    * ", "    * "));
+            default -> new ArrayList<>();
+        };
     }
-
 }
