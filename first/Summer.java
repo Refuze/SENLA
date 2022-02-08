@@ -8,6 +8,9 @@ import java.util.Scanner;
 public class Summer {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
+
+        System.out.print("Enter any line: ");
+
         String string = scanner.nextLine();
         int sum = 0;
 
@@ -17,6 +20,6 @@ public class Summer {
             }
         }
 
-        System.out.println(sum);
+        System.out.println("The sum of the digits present in this line: " + sum);
     }
 }
