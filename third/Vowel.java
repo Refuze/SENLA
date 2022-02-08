@@ -5,14 +5,15 @@ import java.util.List;
 import java.util.Scanner;
 
 public class Vowel {
-    final static Integer[] vowels = new Integer[]{65, 69, 73, 79, 85, 89, 1040, 1054, 1069, 1045, 1048, 1067, 1059, 1025, 1070,
-            1071, 97, 101, 105, 111, 117, 121, 1072, 1086, 1101, 1077, 1080, 1099, 1091, 1105, 1102,1103};
+    static final Integer[] vowels = new Integer[]{65, 69, 73, 79, 85, 89, 1040, 1054, 1069, 1045, 1048, 1067, 1059,
+            1025, 1070, 1071, 97, 101, 105, 111, 117, 121, 1072, 1086, 1101, 1077, 1080, 1099, 1091, 1105, 1102,1103};
 
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
+        System.out.print("Enter any line: ");
         String string = scanner.nextLine();
-        System.out.println(SumVowelLetter(string));
-        System.out.println(SumToUpperCase(string));
+        System.out.println("Number of vowels on line: " + SumVowelLetter(string));
+        System.out.println("Sorted line with upper case vowels: " + SumToUpperCase(string));
     }
 
     public static int SumVowelLetter (String string){
@@ -74,17 +75,6 @@ public class Vowel {
         return endString.toString();
     }
 
-    private static void swapString(StringBuilder[] array, int ind1, int ind2) {
-        StringBuilder tmp = array[ind1];
-        array[ind1] = array[ind2];
-        array[ind2] = tmp;
-    }
-
-    private static void swapInt(int[] array, int ind1, int ind2) {
-        int tmp = array[ind1];
-        array[ind1] = array[ind2];
-        array[ind2] = tmp;
-    }
 
     public static String SumToUpperCase (String string){
         string = SumSorter(string);
@@ -125,5 +115,18 @@ public class Vowel {
         }
         return endString.toString();
     }
+
+    private static void swapString(StringBuilder[] array, int ind1, int ind2) {
+        StringBuilder tmp = array[ind1];
+        array[ind1] = array[ind2];
+        array[ind2] = tmp;
+    }
+
+    private static void swapInt(int[] array, int ind1, int ind2) {
+        int tmp = array[ind1];
+        array[ind1] = array[ind2];
+        array[ind2] = tmp;
+    }
+
 }
 
